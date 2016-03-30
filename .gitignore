@@ -1,0 +1,7 @@
+/.env
+/app/cache
+/public/files
+/vendor
+/.idea
+/.phalcon
+/public/temp
