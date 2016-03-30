@@ -87,7 +87,7 @@ class myRedis
     }
 
     public function getPrefix() {
-        return 'standard:';
+        return 'strategycontrol:';
     }
 
 

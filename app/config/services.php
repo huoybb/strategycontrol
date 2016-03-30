@@ -149,6 +149,6 @@ $di->setShared("carbon",function(){
     return new \Carbon\Carbon();
 });
 
-$di->set('Event',function(){
+$di->set('event',function(){
     return include 'events.php';
 },true);

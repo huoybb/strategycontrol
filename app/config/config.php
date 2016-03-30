@@ -23,6 +23,8 @@ return new \Phalcon\Config(array(
         'baseUri'        => '/',
         'middlewaresDir' => __DIR__ . '/../../app/middlewares/',
         'facades'         => __DIR__ . '/../../app/facades/',
-        'eventPrefix'    => 'strategycontrol',
+        'eventPrefix'    => 'my',
+        'events'    => APP_PATH . '/app/events/',
+        'eventsHandlers'    => APP_PATH . '/app/eventsHandlers/',
     )
 ));

@@ -5,7 +5,7 @@ use Phalcon\Mvc\Controller;
 use Phalcon\Mvc\Dispatcher;
 
 /**
- * @property Users auth
+ * @property User auth
  * @property Redis redis
  * @property myRouter router
  * @property Carbon carbon

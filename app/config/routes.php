@@ -5,6 +5,7 @@ $router = new myRouter(false);
 
 //$router->bindProvider(FilesInterface::class,Files::class);
 
+
 $router->removeExtraSlashes(true);
 //$router->addMiddlewaresForEveryRoute([isLoggedin::class]);
 

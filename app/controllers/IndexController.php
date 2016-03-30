@@ -9,6 +9,9 @@ class IndexController extends myController
 
         $this->view->news = $news;
 
+
+        EventFacade::trigger(new myTestEvent('test'));
+
     }
 
 }
