@@ -85,4 +85,13 @@ abstract class myModel extends Model{
         return $r->getMethods();
     }
 
+    public static function getDataTypes()
+    {
+        $instance  = new static();
+        $meta = $instance->getModelsMetaData();
+        $types = $meta->getDataTypes($instance);
+        return $types;
+    }
+
+
 } 
