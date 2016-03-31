@@ -153,6 +153,6 @@ $di->setShared('redis',function(){
     return new myRedis();
 });
 
-$di->setShared('event',function(){
+$di->setShared('eventsManager',function(){
     return include 'events.php';
 });
