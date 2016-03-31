@@ -1,6 +1,6 @@
 <?php
 
-class Opportunity extends myModel
+class Budget extends myModel
 {
 
     /**
@@ -8,30 +8,6 @@ class Opportunity extends myModel
      * @var integer
      */
     public $id;
-
-    /**
-     *
-     * @var string
-     */
-    public $source;
-
-    /**
-     *
-     * @var string
-     */
-    public $title;
-
-    /**
-     *
-     * @var string
-     */
-    public $description;
-
-    /**
-     *
-     * @var integer
-     */
-    public $valuation;
 
     /**
      *
@@ -43,13 +19,19 @@ class Opportunity extends myModel
      *
      * @var string
      */
-    public $related_product;
+    public $fiscal_year;
 
     /**
      *
      * @var integer
      */
-    public $user_id;
+    public $amount;
+
+    /**
+     *
+     * @var string
+     */
+    public $note;
 
     /**
      *
@@ -59,15 +41,9 @@ class Opportunity extends myModel
 
     /**
      *
-     * @var string
-     */
-    public $status;
-
-    /**
-     *
      * @var integer
      */
-    public $contract_id;
+    public $user_id;
 
     /**
      *
@@ -82,20 +58,26 @@ class Opportunity extends myModel
     public $updated_at;
 
     /**
+     *
+     * @var integer
+     */
+    public $parent_id;
+
+    /**
      * Returns table name mapped in the model.
      *
      * @return string
      */
     public function getSource()
     {
-        return 'opportunity';
+        return 'budget';
     }
 
     /**
      * Allows to query a set of records that match the specified conditions
      *
      * @param mixed $parameters
-     * @return Opportunity[]
+     * @return Budget[]
      */
     public static function find($parameters = null)
     {
@@ -106,7 +88,7 @@ class Opportunity extends myModel
      * Allows to query the first record that match the specified conditions
      *
      * @param mixed $parameters
-     * @return Opportunity
+     * @return Budget
      */
     public static function findFirst($parameters = null)
     {

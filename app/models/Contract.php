@@ -1,6 +1,6 @@
 <?php
 
-class Opportunity extends myModel
+class Contract extends myModel
 {
 
     /**
@@ -11,45 +11,15 @@ class Opportunity extends myModel
 
     /**
      *
-     * @var string
-     */
-    public $source;
-
-    /**
-     *
-     * @var string
-     */
-    public $title;
-
-    /**
-     *
-     * @var string
-     */
-    public $description;
-
-    /**
-     *
-     * @var integer
-     */
-    public $valuation;
-
-    /**
-     *
      * @var integer
      */
     public $customer_id;
 
     /**
      *
-     * @var string
-     */
-    public $related_product;
-
-    /**
-     *
      * @var integer
      */
-    public $user_id;
+    public $amount;
 
     /**
      *
@@ -59,15 +29,15 @@ class Opportunity extends myModel
 
     /**
      *
-     * @var string
+     * @var integer
      */
-    public $status;
+    public $user_id;
 
     /**
      *
-     * @var integer
+     * @var string
      */
-    public $contract_id;
+    public $status;
 
     /**
      *
@@ -79,7 +49,7 @@ class Opportunity extends myModel
      *
      * @var string
      */
-    public $updated_at;
+    public $update_at;
 
     /**
      * Returns table name mapped in the model.
@@ -88,14 +58,14 @@ class Opportunity extends myModel
      */
     public function getSource()
     {
-        return 'opportunity';
+        return 'contract';
     }
 
     /**
      * Allows to query a set of records that match the specified conditions
      *
      * @param mixed $parameters
-     * @return Opportunity[]
+     * @return Contract[]
      */
     public static function find($parameters = null)
     {
@@ -106,7 +76,7 @@ class Opportunity extends myModel
      * Allows to query the first record that match the specified conditions
      *
      * @param mixed $parameters
-     * @return Opportunity
+     * @return Contract
      */
     public static function findFirst($parameters = null)
     {

@@ -1,6 +1,6 @@
 <?php
 
-class Opportunity extends myModel
+class Department extends myModel
 {
 
     /**
@@ -13,73 +13,37 @@ class Opportunity extends myModel
      *
      * @var string
      */
-    public $source;
-
-    /**
-     *
-     * @var string
-     */
-    public $title;
-
-    /**
-     *
-     * @var string
-     */
-    public $description;
+    public $name;
 
     /**
      *
      * @var integer
      */
-    public $valuation;
+    public $headCount;
 
     /**
      *
      * @var integer
      */
-    public $customer_id;
-
-    /**
-     *
-     * @var string
-     */
-    public $related_product;
+    public $total_budget;
 
     /**
      *
      * @var integer
      */
-    public $user_id;
+    public $total_contract_amount;
 
     /**
      *
      * @var integer
      */
-    public $department_id;
-
-    /**
-     *
-     * @var string
-     */
-    public $status;
+    public $total_income;
 
     /**
      *
      * @var integer
      */
-    public $contract_id;
-
-    /**
-     *
-     * @var string
-     */
-    public $created_at;
-
-    /**
-     *
-     * @var string
-     */
-    public $updated_at;
+    public $total_expense;
 
     /**
      * Returns table name mapped in the model.
@@ -88,14 +52,14 @@ class Opportunity extends myModel
      */
     public function getSource()
     {
-        return 'opportunity';
+        return 'department';
     }
 
     /**
      * Allows to query a set of records that match the specified conditions
      *
      * @param mixed $parameters
-     * @return Opportunity[]
+     * @return Department[]
      */
     public static function find($parameters = null)
     {
@@ -106,7 +70,7 @@ class Opportunity extends myModel
      * Allows to query the first record that match the specified conditions
      *
      * @param mixed $parameters
-     * @return Opportunity
+     * @return Department
      */
     public static function findFirst($parameters = null)
     {
