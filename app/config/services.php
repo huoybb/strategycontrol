@@ -84,9 +84,9 @@ $di->setShared('modelsMetadata', function () {
     return new MetaDataAdapter();
 });
 
-$di->set('router',function(){
+$di->setShared('router',function(){
     return include "routes.php";
-},true);
+});
 
 /**
  * Register the session flash service with the Twitter Bootstrap classes
@@ -113,7 +113,7 @@ $di->setShared('session', function () {
 /*
  * 设置security，这个可以用来加密密码以及产生token
  */
-$di->set('security', function () {
+$di->setShared('security', function () {
 
     $security = new Security();
 
@@ -121,7 +121,7 @@ $di->set('security', function () {
     $security->setWorkFactor(12);
 
     return $security;
-}, true);
+});
 
 /*
  * 设置 cookies
@@ -149,6 +149,10 @@ $di->setShared("carbon",function(){
     return new \Carbon\Carbon();
 });
 
-$di->set('event',function(){
+$di->setShared('redis',function(){
+    return new myRedis();
+});
+
+$di->setShared('event',function(){
     return include 'events.php';
-},true);
+});

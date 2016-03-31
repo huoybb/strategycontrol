@@ -5,7 +5,7 @@ class IndexController extends myController
 
     public function indexAction()
     {
-        $news = News::find();
+        $news = News::find(['order'=>'created_at DESC','limit'=>3]);
 
         $this->view->news = $news;
 

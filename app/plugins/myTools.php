@@ -45,6 +45,7 @@ class myTools
     public function getLayoutLinkArray()
     {
         return [
+            'news'=>'客户动态',
             'notification'=>"通知()",
             'task'=>"我的任务",
         ];
