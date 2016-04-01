@@ -5,6 +5,7 @@ $eDomain = ConfigFacade::getService()->application->eventPrefix;
 
 $eventManager->register($eDomain,[
     myTestEventHandler::class,
+    notificationEventHandler::class,
 ]);
 
 return $eventManager;

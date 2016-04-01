@@ -8,7 +8,7 @@
  */
 class myTestEventHandler
 {
-    public function myTestEvent($e,myTestEvent $event)
+    public function myTestEvent(myTestEvent $event)
     {
         var_dump($event->getData());
     }

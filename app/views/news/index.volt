@@ -7,6 +7,7 @@
         <div class="page-header">
             <h1>最新新闻</h1>
             <div>操作：<a href="{{ url(['for':'news.add']) }}">新增</a></div>
+            <p>{{ flash.output() }}</p>
         </div>
         {% for n in news %}
             <h2><a href="{{ url(['for':'news.show','news':n.id]) }}">{{ n.title }}</a> </h2>

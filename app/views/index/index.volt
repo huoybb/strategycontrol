@@ -6,6 +6,7 @@
     <div class="container">
         <div class="page-header">
             <h1>最新新闻</h1>
+            <p>{{ flash.output() }}</p>
         </div>
         {% for n in news %}
             <h2><a href="{{ url(['for':'news.show','news':n.id]) }}">{{ n.title }}</a> </h2>
