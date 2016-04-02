@@ -33,6 +33,7 @@ class NewsController extends myController
         if($this->request->isPost()){
             $data = $this->request->getPost();
             $news->update($data);
+            EventFacade::trigger(new editNewsEvent($news));
             $this->redirectByRoute(['for'=>'news.show','news'=>$news->id]);
         }
 
