@@ -8,14 +8,17 @@
  */
 class notificationEventHandler
 {
-    public function whenaddNewsEvent(addNewsEvent $event)
+    public function whenAddNewsEvent(AddNewsEvent $event)
     {
         FlashFacade::notice('a news was added'.$event->new->title);
     }
-    public function wheneditNewsEvent(editNewsEvent $event)
+    public function whenEditNewsEvent(EditNewsEvent $event)
     {
         FlashFacade::notice("news:{$event->news->id}:{$event->news->title},has just been edited!");
     }
-
+    public function whenDeleteNewsEvent(DeleteNewsEvent $event)
+    {
+        FlashFacade::notice("news:{$event->news['id']}:{$event->news['title']},has just been deleted");
+    }
 
 }

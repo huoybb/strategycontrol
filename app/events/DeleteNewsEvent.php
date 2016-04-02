@@ -4,19 +4,20 @@
  * Created by PhpStorm.
  * User: ThinkPad
  * Date: 2016/4/2
- * Time: 10:42
+ * Time: 12:53
  */
-class EditNewsEvent
+class DeleteNewsEvent
 {
     public $news;
 
     /**
-     * editNewsEvent constructor.
+     * DeleteNewsEvent constructor.
      * @param $news
      */
     public function __construct($news)
     {
-        $this->news = $news;
+        $this->news = ['id'=>$news->id,'title'=>$news->title];
     }
+
 
 }

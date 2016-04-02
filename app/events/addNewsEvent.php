@@ -6,7 +6,7 @@
  * Date: 2016/4/1
  * Time: 16:52
  */
-class addNewsEvent
+class AddNewsEvent
 {
     public $new;
 
