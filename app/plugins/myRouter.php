@@ -82,7 +82,6 @@ class myRouter extends Router{
 
             /** @var myValidation $validator */
             $validator = new $validator;
-
             if(!in_array($route->getName(),$validator->excludedRoutes) and !$validator->isValid($data)){
                 $url = $validator->getRedirectedUrl();
 //                    dd($url);
@@ -110,6 +109,7 @@ class myRouter extends Router{
                 }
 
                 if(!$validator->isValid($data)){
+                    SessionFacade::set('lastPost',$data);
                     $url = $validator->getRedirectedUrl();
 //                    dd($url);
                     $response->redirect($url,true);

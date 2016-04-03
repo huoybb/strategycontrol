@@ -16,12 +16,7 @@ class myForm
 
     public static function buildFromModel(\Phalcon\Mvc\Model $model,array $extraFields = null)
     {
-        if($model->id){
-            $form = new Form($model);
-        }else{
-            $form = new Form();
-        }
-
+        $form = new Form($model);
         $metaDataTypes = $model->getModelsMetaData()->getDataTypes($model);
 
         $fields =[];
