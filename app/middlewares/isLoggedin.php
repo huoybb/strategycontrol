@@ -13,10 +13,10 @@ class isLoggedin extends myValidation{
 
     public function isValid($data = null)
     {
-        return true;
         if(SessionFacade::has('auth')) return true;
         if(CookieFacade::has('auth')) {
-            $user = Users::findByCookieAuth((array)CookieFacade::get('auth'));
+//            dd((array)CookieFacade::get('auth'));
+            $user = User::findByCookieAuth((array)CookieFacade::get('auth'));
             if(!$user) return false;
             FlashFacade::success('欢迎'.$user->name.'登录！你上次登录的时间是：'.$user->updated_at);
 
@@ -32,7 +32,6 @@ class isLoggedin extends myValidation{
         $this->redirectUrl = UrlFacade::get(['for'=>'login']);
         $this->excludedRoutes = [
             'login',
-            'standards.getWebData',
             'users.resetPassword',
             'users.userRequestResetPassword'
         ];

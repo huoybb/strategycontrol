@@ -156,3 +156,6 @@ $di->setShared('redis',function(){
 $di->setShared('eventsManager',function(){
     return include 'events.php';
 });
+$di->setShared('auth',function() use($di){
+    return User::findFirst(SessionFacade::getAuthID());
+});

@@ -38,6 +38,31 @@ class User extends myModel
      * @var string
      */
     public $updated_at;
+    /**
+     *
+     * @var string
+     */
+    public $role;
+    /**
+     *
+     * @var string
+     */
+    public $status;
+    /**
+     *
+     * @var string
+     */
+    public $email;
+    /**
+     *
+     * @var string
+     */
+    public $password;
+    /**
+     *
+     * @var string
+     */
+    public $remember_token;
 
     /**
      * Returns table name mapped in the model.
@@ -69,6 +94,18 @@ class User extends myModel
     public static function findFirst($parameters = null)
     {
         return parent::findFirst($parameters);
+    }
+
+    /**
+     * @param array $cookie
+     * @return User
+     */
+    public static function findByCookieAuth(array $cookie)
+    {
+        return static::query()
+            ->where('email = :email:', ['email' => $cookie['email']])
+            ->andWhere('remember_token = :token:', ['token' => $cookie['token']])
+            ->execute()->getFirst();
     }
 
 }
