@@ -93,5 +93,18 @@ abstract class myModel extends Model{
         return $types;
     }
 
+    /**
+     *如果post数据中有错误，则利用这个函数来获取上一次最后提交的数据，以便方便修改，类似laravel中的withPost或者什么的
+     */
+    public function filledWithLastPost()
+    {
+        if (SessionFacade::has('lastPost')) {
+            $data = SessionFacade::get('lastPost');
+            SessionFacade::remove('lastPost');
+            foreach ($data as $key => $value) {
+                if (property_exists($this, $key)) $this->{$key} = $value;
+            }
+        }
+    }
 
 } 

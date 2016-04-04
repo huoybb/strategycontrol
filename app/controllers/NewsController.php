@@ -22,7 +22,7 @@ class NewsController extends myController
             EventFacade::trigger(new AddNewsEvent($news));
             $this->redirectByRoute(['for'=>'news.show','news'=>$news->id]);
         }
-        $news = $this->setLastPost($news);
+        $news->filledWithLastPost();
         $this->view->form = myForm::buildFromModel($news);
 
     }
@@ -36,7 +36,7 @@ class NewsController extends myController
             EventFacade::trigger(new EditNewsEvent($news));
             $this->redirectByRoute(['for'=>'news.show','news'=>$news->id]);
         }
-        $news = $this->setLastPost($news);
+        $news->filledWithLastPost();
         $this->view->news = $news;
         $this->view->form = myForm::buildFromModel($news);
     }
@@ -45,18 +45,6 @@ class NewsController extends myController
         EventFacade::trigger(new DeleteNewsEvent($news));
         $news->delete();
         return $this->redirectByRoute(['for'=>'news.index']);
-    }
-
-    private function setLastPost(myModel $news)
-    {
-        if(SessionFacade::has('lastPost')){
-            $data = SessionFacade::get('lastPost');
-            SessionFacade::remove('lastPost');
-            foreach($data as $key=>$value){
-                if(property_exists($news,$key)) $news->{$key} = $value;
-            }
-        }
-        return $news;
     }
 
 }
