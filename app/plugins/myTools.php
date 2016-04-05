@@ -46,8 +46,10 @@ class myTools
     {
         return [
             'news'=>'客户动态',
-            'notification'=>"通知()",
+//            'notification'=>"通知()",
             'task'=>"我的任务",
+            'users'=>'员工管理',
+
         ];
     }
 

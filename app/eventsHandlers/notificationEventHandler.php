@@ -20,5 +20,10 @@ class notificationEventHandler
     {
         FlashFacade::notice("news:{$event->news['id']}:{$event->news['title']},has just been deleted");
     }
+    public function whenCreateNewUserEvent(CreateNewUserEvent $event)
+    {
+        FlashFacade::notice('增加了一个用户：'.$event->user->name);
+    }
+    
 
 }

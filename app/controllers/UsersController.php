@@ -6,7 +6,7 @@ class UsersController extends myController
     public function indexAction()
     {
         $users = User::find();
-        dd($users->toArray());
+        $this->view->users = $users;
     }
     public function loginAction()
     {
@@ -33,6 +33,19 @@ class UsersController extends myController
         EventFacade::trigger(new LogoutEvent(AuthFacade::getService()));
         $this->redirectByRoute(['for'=>'login']);
     }
+
+    public function addAction(User $user)
+    {
+        if($this->request->isPost()){
+            $data = $this->request->getPost();
+            $user->save($data);
+            EventFacade::trigger(new CreateNewUserEvent($user));
+            return $this->redirectByRoute(['for'=>'users.index']);
+        }
+        $user->filledWithLastPost();
+        $this->view->form = myForm::buildFromModel($user);
+    }
+
 
 
 }

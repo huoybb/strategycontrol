@@ -18,8 +18,11 @@ $router->add('/news/{news:[0-9]+}','news::show')->setName('news.show');
 $router->addx('/news/{news:[0-9]+}/edit','news::edit',[newsRules::class])->setName('news.edit');
 $router->add('/news/{news:[0-9]+}/delete','news::delete')->setName('news.delete');
 
-$router->add('/users','users::index')->setName('users.index');
 $router->add('/login','users::login')->setName('login');
 $router->add('/logout','users::logout')->setName('logout');
+$router->add('/users','users::index')->setName('users.index');
+$router->addx('/users/add','users::add',[addNewUserFilter::class])->setName('users.add');
+
+
 
 return $router;
