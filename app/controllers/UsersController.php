@@ -46,6 +46,20 @@ class UsersController extends myController
         $this->view->form = myForm::buildFromModel($user);
     }
 
+    public function editAction(User $user)
+    {
+        if($this->request->isPost()){
+            $data = $this->request->getPost();
+            $user->save($data);
+            EventFacade::trigger(new EditUserEvent($user));
+            return $this->redirectByRoute(['for'=>'users.index']);
+        }
+        $user->filledWithLastPost();
+        $this->view->form = myForm::buildFromModel($user);
+
+    }
+
+
 
 
 }

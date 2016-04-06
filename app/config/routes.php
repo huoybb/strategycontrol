@@ -21,7 +21,8 @@ $router->add('/news/{news:[0-9]+}/delete','news::delete')->setName('news.delete'
 $router->add('/login','users::login')->setName('login');
 $router->add('/logout','users::logout')->setName('logout');
 $router->add('/users','users::index')->setName('users.index');
-$router->addx('/users/add','users::add',[addNewUserFilter::class])->setName('users.add');
+$router->addx('/users/add','users::add',[changeNewUserFilter::class])->setName('users.add');
+$router->addx('/users/{user:[0-9]+}/edit','users::edit',[changeNewUserFilter::class])->setName('users.edit');
 
 
 

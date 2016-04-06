@@ -24,6 +24,10 @@ class notificationEventHandler
     {
         FlashFacade::notice('增加了一个用户：'.$event->user->name);
     }
-    
+    public function whenEditUserEvent(EditUserEvent $event)
+    {
+        FlashFacade::notice('更新了一个用户：'.$event->user->name);
+    }
+
 
 }
