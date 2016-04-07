@@ -12,25 +12,15 @@ class UsersController extends myController
     {
         if($this->request->isPost()){
             $data = $this->request->getPost();
-            $user = User::findFirst(['email = :email:','bind'=>['email'=>$data['email']]]);
-//            dd($user->toArray());
-            if($user AND SecurityFacade::checkHash($data['password'],$user->password)){
-                if($user->status != '正常'){
-                    FlashFacade::error('你的帐户目前不正常，不能正常登录，请联系系统管理员');
-                    return $this->redirectByRoute(['for'=>'login']);
-                }
-                FlashFacade::success('欢迎'.$user->name.'登录！你上次登录的时间是：'.$user->updated_at);
-                EventFacade::trigger(new LoginEvent($user,$data));
+            if(User::login($data['email'],$data['password'])){
                 return $this->redirectByRoute(['for'=>'home']);
-            }else{
-                $this->flash->error('登录不成功，密码或者邮件地址有误！');
             }
         }
         $this->view->form = myForm::buildLoginForm();
     }
     public function logoutAction()
     {
-        EventFacade::trigger(new LogoutEvent(AuthFacade::getService()));
+        User::logout();
         $this->redirectByRoute(['for'=>'login']);
     }
 
@@ -38,8 +28,7 @@ class UsersController extends myController
     {
         if($this->request->isPost()){
             $data = $this->request->getPost();
-            $user->save($data);
-            EventFacade::trigger(new CreateNewUserEvent($user));
+            $user->addNewUser($data);
             return $this->redirectByRoute(['for'=>'users.index']);
         }
         $user->filledWithLastPost();
@@ -50,8 +39,7 @@ class UsersController extends myController
     {
         if($this->request->isPost()){
             $data = $this->request->getPost();
-            $user->save($data);
-            EventFacade::trigger(new EditUserEvent($user));
+            $user->editUser($data);
             return $this->redirectByRoute(['for'=>'users.index']);
         }
         $user->filledWithLastPost();

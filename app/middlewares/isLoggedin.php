@@ -15,14 +15,7 @@ class isLoggedin extends myValidation{
     {
         if(SessionFacade::has('auth')) return true;
         if(CookieFacade::has('auth')) {
-//            dd((array)CookieFacade::get('auth'));
-            $user = User::findByCookieAuth((array)CookieFacade::get('auth'));
-            if(!$user) return false;
-            FlashFacade::success('欢迎'.$user->name.'登录！你上次登录的时间是：'.$user->updated_at);
-
-            //利用cookie实现登录
-            EventFacade::trigger(new loginEvent($user,['remember'=>'on']));
-            return true;
+            return User::loginByCookieAuth((array)CookieFacade::get('auth'));
         }
         return false;
     }
