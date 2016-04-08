@@ -59,5 +59,10 @@ trait authTrait
         EventFacade::trigger(new EditUserEvent($this));
         return $this;
     }
+    public static function deleteUser(User $user)
+    {
+        EventFacade::trigger(new DeleteUserEvent($user));
+        $user->delete();
+    }
 
 }

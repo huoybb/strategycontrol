@@ -27,7 +27,7 @@
                     <td>{{ user.role }}</td>
                     <td>{{ user.status }}</td>
                     <td><a href="{{ url(['for':'users.edit','user':user.id]) }}">修改</a></td>
-                    <td><a href="#">删除</a></td>
+                    <td><a href="{{ url(['for':'users.delete','user':user.id]) }}">删除</a></td>
                     <td><a href="#">发送密码遗忘邮件</a></td>
                 </tr>
                 {% endfor %}

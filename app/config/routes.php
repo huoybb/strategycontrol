@@ -23,6 +23,7 @@ $router->add('/logout','users::logout')->setName('logout');
 $router->add('/users','users::index')->setName('users.index');
 $router->addx('/users/add','users::add',[changeNewUserFilter::class])->setName('users.add');
 $router->addx('/users/{user:[0-9]+}/edit','users::edit',[changeNewUserFilter::class])->setName('users.edit');
+$router->addx('/users/{user:[0-9]+}/delete','users::delete',[isAdministrator::class])->setName('users.delete');
 
 
 

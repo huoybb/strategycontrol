@@ -47,6 +47,13 @@ class UsersController extends myController
 
     }
 
+    public function deleteAction(User $user)
+    {
+        User::deleteUser($user);
+        return $this->redirectByRoute(['for'=>'users.index']);
+    }
+
+
 
 
 

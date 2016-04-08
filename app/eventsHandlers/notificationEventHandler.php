@@ -28,6 +28,11 @@ class notificationEventHandler
     {
         FlashFacade::notice('更新了一个用户：'.$event->user->name);
     }
+    public function whenDeleteUserEvent(DeleteUserEvent $event)
+    {
+        FlashFacade::notice('删除了一个用户：'.$event->user->name);
+    }
+
 
 
 }
