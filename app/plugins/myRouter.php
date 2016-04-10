@@ -49,10 +49,10 @@ class myRouter extends Router{
      * @param array $middleware
      * @return \Phalcon\Mvc\Router\Route
      */
-    public function addx($pattern,$path,array $middleware=[])//给路由添加中间件
+    public function addx($pattern,$path,array $middleware=[],array $httpMethods = ['GET', 'POST'])//给路由添加中间件
     {
         $this->middlewares[$pattern]=$middleware;
-        return $this->add($pattern,$path);
+        return $this->add($pattern,$path,$httpMethods);
     }
 
 

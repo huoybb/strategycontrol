@@ -15,6 +15,7 @@ class isLoggedin extends myValidation{
     {
         if(SessionFacade::has('auth')) return true;
         if(CookieFacade::has('auth')) {
+//            dd((array)CookieFacade::get('auth'));
             return User::loginByCookieAuth((array)CookieFacade::get('auth'));
         }
         return false;

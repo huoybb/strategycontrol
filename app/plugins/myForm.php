@@ -1,4 +1,6 @@
 <?php
+use Phalcon\Forms\Element\Check;
+use Phalcon\Forms\Element\Password;
 use Phalcon\Forms\Element\Submit;
 use Phalcon\Forms\Element\Text;
 use Phalcon\Forms\Element\TextArea;
@@ -52,11 +54,22 @@ class myForm
 
     public static function buildLoginForm()
     {
-        $form = new \Phalcon\Forms\Form();
-        $form->add(new \Phalcon\Forms\Element\Text('email'));
-        $form->add(new \Phalcon\Forms\Element\Password('password'));
-        $form->add(new \Phalcon\Forms\Element\Check('remember'));
-        $form->add(new \Phalcon\Forms\Element\Submit('Login'));
+        $form = new Form();
+        $form->add(new Text('email'));
+        $form->add(new Password('password'));
+        $form->add(new Check('remember'));
+        $form->add(new Submit('Login'));
+        return $form;
+    }
+
+    public static function buildMyInfoForm(User $user)
+    {
+        $form = new Form($user);
+        $form->add(new Text('name'));
+        $form->add(new Text('mobile'));
+        $form->add(new Text('position'));
+        $form->add(new Text('email'));
+        $form->add(new Submit('修改'));
         return $form;
     }
 }

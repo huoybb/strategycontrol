@@ -49,6 +49,7 @@ class myTools
 //            'notification'=>"通知()",
             'task'=>"我的任务",
             'users'=>'员工管理',
+            'my'=>'我的信息',
 
         ];
     }

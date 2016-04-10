@@ -25,6 +25,9 @@ $router->addx('/users/add','users::add',[changeNewUserFilter::class])->setName('
 $router->addx('/users/{user:[0-9]+}/edit','users::edit',[changeNewUserFilter::class])->setName('users.edit');
 $router->addx('/users/{user:[0-9]+}/delete','users::delete',[isAdministrator::class])->setName('users.delete');
 
+$router->add('/my','users::showMyInfo')->setName('my.showInfo');
+$router->add('/my/edit','users::editMyInfo')->setName('my.editInfo');
+$router->addx('/my/save','users::editMyInfo',[editMyInfoFilter::class])->setName('my.saveInfo');
 
 
 return $router;

@@ -12,7 +12,7 @@ class UsersController extends myController
     {
         if($this->request->isPost()){
             $data = $this->request->getPost();
-            if(User::login($data['email'],$data['password'])){
+            if(User::login($data['email'],$data['password'],$data['remember'])){
                 return $this->redirectByRoute(['for'=>'home']);
             }
         }
@@ -27,8 +27,7 @@ class UsersController extends myController
     public function addAction(User $user)
     {
         if($this->request->isPost()){
-            $data = $this->request->getPost();
-            $user->addNewUser($data);
+            $user->addNewUser($this->request->getPost());
             return $this->redirectByRoute(['for'=>'users.index']);
         }
         $user->filledWithLastPost();
@@ -38,8 +37,7 @@ class UsersController extends myController
     public function editAction(User $user)
     {
         if($this->request->isPost()){
-            $data = $this->request->getPost();
-            $user->editUser($data);
+            $user->editUser($this->request->getPost());
             return $this->redirectByRoute(['for'=>'users.index']);
         }
         $user->filledWithLastPost();
@@ -52,6 +50,27 @@ class UsersController extends myController
         User::deleteUser($user);
         return $this->redirectByRoute(['for'=>'users.index']);
     }
+
+    public function showMyInfoAction()
+    {
+        /** @var User $user */
+//        $user = AuthFacade::getService();
+//        dd($user->getDataTypes());
+        $this->view->user = AuthFacade::getService();
+    }
+    public function editMyInfoAction()
+    {
+        /** @var User $user */
+        $user = AuthFacade::getService();
+        if($this->request->isPost()){
+            $user->editInfo($this->request->getPost());
+            return $this->redirectByRoute(['for'=>'my.showInfo']);
+        }
+        $user->filledWithLastPost();
+        $this->view->form = myForm::buildMyInfoForm($user);
+    }
+
+
 
 
 

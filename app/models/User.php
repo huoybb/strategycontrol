@@ -98,5 +98,24 @@ class User extends myModel
     {
         return parent::findFirst($parameters);
     }
+    
+    public function getInfo()
+    {
+        $data = $this->getDataTypes();
+        $result = [];
+        foreach($data as $key=>$value){
+            if(!in_array($key,['password','remember_token'])){
+                $result[$key]=$this->{$key};
+            }
+        }
+        return $result;
+    }
+
+    public function editInfo($data)
+    {
+        $this->save($data);
+        EventFacade::trigger(new InfoHasBeenEditedByUser($data));
+    }
+
 
 }

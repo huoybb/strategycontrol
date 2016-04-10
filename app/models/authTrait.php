@@ -8,7 +8,7 @@
  */
 trait authTrait
 {
-    public static function login($email, $password)
+    public static function login($email, $password,$remember = 'off')
     {
         $user = static::findFirst(['email = :email:','bind'=>['email'=>$email]]);
         if($user AND SecurityFacade::checkHash($password,$user->password)){
@@ -17,7 +17,7 @@ trait authTrait
                 return false;
             }
             FlashFacade::success('欢迎'.$user->name.'登录！你上次登录的时间是：'.$user->updated_at);
-            EventFacade::trigger(new LoginEvent($user,[]));
+            EventFacade::trigger(new LoginEvent($user,['remember'=>$remember,'email'=>$email,'password'=>$password]));
             return true;
         }
         FlashFacade::error('登录不成功，密码或者邮件地址有误！');
@@ -61,6 +61,10 @@ trait authTrait
     }
     public static function deleteUser(User $user)
     {
+        if($user->role == '管理员'){
+            FlashFacade::error('管理员不能够被删除');
+            return false;
+        }
         EventFacade::trigger(new DeleteUserEvent($user));
         $user->delete();
     }

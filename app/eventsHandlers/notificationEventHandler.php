@@ -32,6 +32,11 @@ class notificationEventHandler
     {
         FlashFacade::notice('删除了一个用户：'.$event->user->name);
     }
+    public function whenInfoHasBeenEditedByUser(InfoHasBeenEditedByUser $event)
+    {
+        FlashFacade::notice('用户信息刚刚更新'.$event->data['name']);
+    }
+
 
 
 
